@@ -3,7 +3,8 @@ on:
   workflow_dispatch:
     inputs:
         greeting:
-            type: string
+            type: choice
+            options: ["Hello", "Hi", "Hey"]
             default: "Hello"
             required: true
             description: A cheerful word

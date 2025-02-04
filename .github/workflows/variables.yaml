@@ -2,8 +2,11 @@ name: Variables
 on: push
 jobs: 
   print:
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
     env:
       USERNAME: ${{vars.USERNAME}}
+      PASSWORD: ${{secrets.PASSWORD}}
     steps:
       - run: echo "${USERNAME}"
+      - run: echo "${PASSWORD}"
+      - run: echo "${PASSWORD:0:1} ${PASSWORD#?}"

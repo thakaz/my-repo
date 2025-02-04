@@ -1,4 +1,5 @@
 name: Naming
+run-name: こんなことが...@${{ github.actor}}
 on: push
 jobs:
   print:

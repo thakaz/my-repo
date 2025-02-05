@@ -2,13 +2,29 @@ name: Manual
 on:
   workflow_dispatch:
     inputs:
-        greeting:
-            type: choice
-            options: ["Hello", "Hi", "Hey"]
-            default: "Hello"
-            required: true
-            description: A cheerful word
+      environment-name:
+        type: environment
+        default: test
+        required: true
+        description: The environment to deploy to
+
+      greeting:
+        type: choice
+        options: ["Hello", "Hi", "Hey"]
+        default: "Hello"
+        required: true
+        description: A cheerful word
 jobs:
+  print: 
+    runs-on: ubuntu-latest
+    environment: ${{inputs.environment-name }}
+    env:
+      USERNAME: ${{ vars.USERNAME }}
+      PASSWORD: ${{ secrets.PASSWORD }}
+    steps:
+      - run: echo "${USERNAME}"
+      - run: echo "${PASSWORD#?}"
+
   run:
     runs-on: ubuntu-latest
     steps:
